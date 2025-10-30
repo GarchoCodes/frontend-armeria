@@ -9,12 +9,34 @@ import Register from "./pages/Register";
 import Usuarios from "./pages/Usuarios";
 import EditarUsuario from "./pages/EditarUsuario";
 import CrearArma from "./pages/CrearArma";
-import type { JSX } from "react";
+import { useEffect, useState, type JSX } from "react";
 import EditarArma from "./pages/EditarArma";
 import ArmaCard from "./components/ArmaCard";
+import Loader from "./components/Loader";
 
 function AppRoutes() {
   const { token, role, loading } = useAuth();
+  const [showLoader, setShowLoader] = useState(false);
+
+  useEffect(() => {
+    const lastShown = localStorage.getItem("appLoaderLastShown");
+    const now = new Date().getTime();
+
+    if (!lastShown || now - parseInt(lastShown) > 7 * 24 * 60 * 60 * 1000) {
+      // Mostrar loader si nunca se mostró o han pasado más de 7 días
+      setShowLoader(true);
+      localStorage.setItem("appLoaderLastShown", now.toString());
+
+      // Ocultar loader después de 2.5s + 1s extra
+      const timeout = setTimeout(() => {
+        setShowLoader(false);
+      }, 3500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, []);
+
+  if (showLoader) return <Loader />;
 
   // 🔒 Componente para proteger rutas según login/rol
   const ProtectedRoute = ({
