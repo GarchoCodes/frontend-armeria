@@ -1,9 +1,8 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { loginUsuario } from "../api/usuarios";
 import imgLogin from "../assets/login-armeria.jpg";
-import Loader from "../components/Loader";
 
 export default function Login() {
     const { login } = useAuth();
@@ -12,19 +11,6 @@ export default function Login() {
     const [form, setForm] = useState({ nombre: "", password: "" });
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
-    const [mostrarBarra, setMostrarBarra] = useState(false);
-
-    useEffect(() => {
-        const ultimaVez = localStorage.getItem("ultima_barra");
-        const ahora = Date.now();
-        const sieteDias = 7 * 24 * 60 * 60 * 1000;
-
-        if (!ultimaVez || ahora - parseInt(ultimaVez) > sieteDias) {
-            setMostrarBarra(true);
-            localStorage.setItem("ultima_barra", ahora.toString());
-        }
-    }, []);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -49,9 +35,7 @@ export default function Login() {
 
     return (
         <div className="flex justify-center items-center h-screen">
-            {mostrarBarra ? (
-                <Loader />
-            ) : (<div className="bg-zinc-900 rounded-2xl inset-shadow-sm inset-shadow-zinc-800 flex items-center">
+            <div className="bg-zinc-900 rounded-2xl inset-shadow-sm inset-shadow-zinc-800 flex items-center">
                 <div className="w-120 h-120">
                     <img src={imgLogin} alt="Imagen armeria login" className="rounded-s-2xl w-full h-full object-cover" />
                 </div>
@@ -109,7 +93,6 @@ export default function Login() {
                     </form>
                 </div>
             </div>
-            )}
         </div>
     );
 }
