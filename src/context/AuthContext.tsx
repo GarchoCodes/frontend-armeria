@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [role, setRole] = useState<Role>("GUEST");
     const [loading, setLoading] = useState(true);
 
-    // 🧠 Cargar datos del localStorage al iniciar
+    // Cargar datos del localStorage al iniciar
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
         const storedRole = localStorage.getItem("rol") as Role | null;

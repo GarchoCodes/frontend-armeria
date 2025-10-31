@@ -55,7 +55,6 @@ export default function Usuarios() {
 
     return (
         <div className="px-12 pb-12 flex flex-col relative">
-            {/* ✅ Toast de mensajes */}
             {toast.mensaje && (
                 <div
                     className={`fixed top-25 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl text-white shadow-lg transition-all duration-300 animate-fade-down z-50
@@ -114,7 +113,6 @@ export default function Usuarios() {
                 </tbody>
             </table>
 
-            {/* ✅ Modal de confirmación */}
             {showModal && usuarioSeleccionado && (
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-60 backdrop-blur-sm z-50 scale-115">
                     <div className="bg-zinc-900 p-6 rounded-2xl shadow-xl w-96 text-center border border-zinc-700">
@@ -127,11 +125,10 @@ export default function Usuarios() {
                             para confirmar.
                         </p>
 
-                        {/* ✅ manejamos submit en el form */}
                         <form
                             onSubmit={(e) => {
-                                e.preventDefault(); // evita recargar la página
-                                handleDeleteConfirm(); // ejecuta tu lógica de borrado
+                                e.preventDefault();
+                                handleDeleteConfirm();
                             }}
                         >
                             <input
@@ -149,7 +146,6 @@ export default function Usuarios() {
                                 >
                                     Cancelar
                                 </button>
-                                {/* ✅ ya no lleva onClick, se activa con Enter o click */}
                                 <button
                                     type="submit"
                                     className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 hover:cursor-pointer text-white transition"

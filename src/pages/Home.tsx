@@ -127,7 +127,6 @@ export default function Home() {
                 </tbody>
             </table>
 
-            {/* ✅ Modal de confirmación */}
             {showModal && armaSeleccionada && (
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-60 backdrop-blur-sm z-50 scale-115">
                     <div className="bg-zinc-900 p-6 rounded-2xl shadow-xl w-96 text-center border border-zinc-700">
@@ -140,12 +139,10 @@ export default function Home() {
                             </span>{" "}
                             para confirmar.
                         </p>
-
-                        {/* ✅ manejamos submit en el form */}
                         <form
                             onSubmit={(e) => {
-                                e.preventDefault(); // evita recargar la página
-                                handleDeleteConfirm(); // ejecuta tu lógica de borrado
+                                e.preventDefault();
+                                handleDeleteConfirm();
                             }}
                         >
                             <input
@@ -163,7 +160,6 @@ export default function Home() {
                                 >
                                     Cancelar
                                 </button>
-                                {/* ✅ ya no lleva onClick, se activa con Enter o click */}
                                 <button
                                     type="submit"
                                     className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 hover:cursor-pointer text-white transition"

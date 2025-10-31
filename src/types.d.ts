@@ -1,4 +1,3 @@
-// src/types.d.ts
 export type Role = "ADMIN" | "USER" | "GUEST" | undefined;
 
 export interface User {
